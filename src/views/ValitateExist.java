@@ -176,6 +176,8 @@ public class ValitateExist extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnValidarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarMouseClicked
+        this.setVisible(false);
+        this.dispose();
         new SetPassword(this.parent, true).setVisible(true);
     }//GEN-LAST:event_btnValidarMouseClicked
 
