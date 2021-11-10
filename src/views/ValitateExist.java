@@ -87,8 +87,9 @@ public class ValitateExist extends javax.swing.JDialog {
         txtIdentificacion.setBorder(null);
         jPanel1.add(txtIdentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 349, 33));
 
-        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 349, 10));
+        jSeparator1.setBackground(new java.awt.Color(0, 102, 204));
+        jSeparator1.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 174, 349, 10));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
@@ -101,8 +102,9 @@ public class ValitateExist extends javax.swing.JDialog {
         txtFechaNacimiento.setBorder(null);
         jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 349, 33));
 
-        jSeparator2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 349, 10));
+        jSeparator2.setBackground(new java.awt.Color(0, 102, 204));
+        jSeparator2.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 244, 349, 10));
 
         jPanelButton.setBackground(new java.awt.Color(255, 51, 102));
 

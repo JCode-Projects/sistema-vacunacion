@@ -84,16 +84,18 @@ public class SetPassword extends javax.swing.JDialog {
         txtConfirmarPassword.setBorder(null);
         jPanel1.add(txtConfirmarPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 350, 30));
 
-        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 349, 10));
+        jSeparator1.setBackground(new java.awt.Color(0, 102, 204));
+        jSeparator1.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 152, 349, 10));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Confirmar Contraseña:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
-        jSeparator2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 349, 10));
+        jSeparator2.setBackground(new java.awt.Color(0, 102, 204));
+        jSeparator2.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 222, 349, 10));
 
         txtPassword.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);

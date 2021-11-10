@@ -5,6 +5,8 @@
  */
 package views;
 
+import utils.DBConnection;
+
 /**
  *
  * @author JCode
@@ -149,11 +151,13 @@ public class Login extends javax.swing.JFrame {
         txtIdentificacion.setBorder(null);
         jPanel2.add(txtIdentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 349, 33));
 
-        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 349, 10));
+        jSeparator1.setBackground(new java.awt.Color(0, 102, 204));
+        jSeparator1.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 274, 349, 10));
 
-        jSeparator2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 349, 10));
+        jSeparator2.setBackground(new java.awt.Color(0, 102, 204));
+        jSeparator2.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 344, 349, 10));
 
         txtContraseña.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         txtContraseña.setActionCommand("<Not Set>");
@@ -253,41 +257,6 @@ public class Login extends javax.swing.JFrame {
     private void btnValidateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidateUserMouseClicked
         new ValitateExist(this, true).setVisible(true);
     }//GEN-LAST:event_btnValidateUserMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnLogin;
