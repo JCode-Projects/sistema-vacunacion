@@ -17,10 +17,11 @@ public class UsuarioModel {
     private String segundoApellido;
     private String telefono;
     private String contraseña;
+    private String tipo;
     private String ultimoAcceso;
 
     // Constructor para traer toda la información del usuario
-    public UsuarioModel(int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String ultimoAcceso) {
+    public UsuarioModel(int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String tipo, String ultimoAcceso) {
         this.identificacion = identificacion;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
@@ -28,23 +29,25 @@ public class UsuarioModel {
         this.segundoApellido = segundoApellido;
         this.telefono = telefono;
         this.contraseña = contraseña;
+        this.tipo = tipo;
         this.ultimoAcceso = ultimoAcceso;
     }
     
     // Constructor para el registro básico
-    public UsuarioModel(int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono) {
+    public UsuarioModel(int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String tipo) {
         this.identificacion = identificacion;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
         this.telefono = telefono;
+        this.tipo = tipo;
     }
     
     // Constructor para credenciales de acceso
-    public UsuarioModel(int identificacion, String segundoApellido) {
+    public UsuarioModel(int identificacion, String contraseña) {
         this.identificacion = identificacion;
-        this.segundoApellido = segundoApellido;
+        this.contraseña = contraseña;
     }
 
     public int getIdentificacion() {
@@ -73,6 +76,10 @@ public class UsuarioModel {
 
     public String getContraseña() {
         return contraseña;
+    }
+    
+    public String getTipo() {
+        return tipo;
     }
 
     public String getUltimoAcceso() {

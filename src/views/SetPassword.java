@@ -6,6 +6,9 @@
 package views;
 
 import static javax.swing.JOptionPane.showMessageDialog;
+import models.FuncionarioModel;
+import models.PacienteModel;
+import controllers.ConfirmacionController;
 
 /**
  *
@@ -13,13 +16,21 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 public class SetPassword extends javax.swing.JDialog {
 
-    /**
-     * Creates new form SetPassword
-     */
-    public SetPassword(java.awt.Frame parent, boolean modal) {
+    private FuncionarioModel funcionario = null;
+    private PacienteModel paciente = null;
+    
+    public SetPassword(java.awt.Frame parent, boolean modal, FuncionarioModel funcionario) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(parent);
+        this.funcionario = funcionario;
+    }
+    
+    public SetPassword(java.awt.Frame parent, boolean modal, PacienteModel paciente) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(parent);
+        this.paciente = paciente;
     }
 
     /**
@@ -181,9 +192,19 @@ public class SetPassword extends javax.swing.JDialog {
     
     private void btnValidarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarMouseClicked
         if(validarPassword(new String(txtPassword.getPassword()), new String(txtConfirmarPassword.getPassword()))) {
-            showMessageDialog(null, "Ya puedes iniciar sesión en nuestro sistema.", "Proceso exitoso", 1);
-            this.setVisible(false);
-            this.dispose();
+            if(funcionario != null) {
+                if(new ConfirmacionController(this).setContraseñaDB(new String(txtPassword.getPassword()), funcionario.getIdentificacion(), funcionario.getTipo())) {
+                    showMessageDialog(null, "Ya puedes iniciar sesión en nuestra aplicación.", "Error Coincidencia", 2);
+                    setVisible(false);
+                    dispose();
+                }
+            } else if(paciente != null) {
+                if(new ConfirmacionController(this).setContraseñaDB(new String(txtPassword.getPassword()), paciente.getIdentificacion(), paciente.getTipo())) {
+                    showMessageDialog(null, "Ya puedes iniciar sesión en nuestra aplicación.", "Error Coincidencia", 2);
+                    setVisible(false);
+                    dispose();
+                }
+            }
         } else {
             showMessageDialog(null, "Las contraseñas ingresadas no son iguales, \nverifica e intenta nuevamente.", "Error Coincidencia", 0);
         }

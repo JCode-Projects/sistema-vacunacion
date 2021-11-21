@@ -17,16 +17,16 @@ public class AdministradorModel extends UsuarioModel {
     private int idUsuario;
 
     // Constructor con toda la información
-    public AdministradorModel(int idAdmistrador, String cargo, int idUsuario,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String ultimoAcceso) {
-        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, contraseña, telefono, ultimoAcceso);
+    public AdministradorModel(int idAdmistrador, String cargo, int idUsuario,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String tipo, String ultimoAcceso) {
+        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, contraseña, telefono, tipo, ultimoAcceso);
         this.idAdministrador = idAdmistrador;
         this.cargo = cargo;
         this.idUsuario = idUsuario;
     }
     
     // Constructor para registro básico
-    public AdministradorModel(int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String cargo) {
-        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono);
+    public AdministradorModel(int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String tipo, String cargo) {
+        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, tipo);
         this.cargo = cargo;
     }
 

@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
+
+import javax.swing.JOptionPane;
+import controllers.ConfirmacionController;
 
 /**
  *
@@ -41,7 +39,7 @@ public class ValitateExist extends javax.swing.JDialog {
         txtIdentificacion = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
-        txtFechaNacimiento = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jPanelButton = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JLabel();
@@ -93,14 +91,14 @@ public class ValitateExist extends javax.swing.JDialog {
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel10.setText("Fecha Nacimiento:");
+        jLabel10.setText("Correo Electronico:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
 
-        txtFechaNacimiento.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txtFechaNacimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFechaNacimiento.setActionCommand("<Not Set>");
-        txtFechaNacimiento.setBorder(null);
-        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 349, 33));
+        txtEmail.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txtEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEmail.setActionCommand("<Not Set>");
+        txtEmail.setBorder(null);
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 349, 33));
 
         jSeparator2.setBackground(new java.awt.Color(0, 102, 204));
         jSeparator2.setForeground(new java.awt.Color(0, 102, 204));
@@ -178,11 +176,30 @@ public class ValitateExist extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnValidarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarMouseClicked
-        this.setVisible(false);
-        this.dispose();
-        new SetPassword(this.parent, true).setVisible(true);
+        if(validarCampos(txtIdentificacion.getText(), txtEmail.getText())) {
+            new ConfirmacionController(this).validarUsuario(Integer.parseInt(txtIdentificacion.getText()), txtEmail.getText());
+        }
     }//GEN-LAST:event_btnValidarMouseClicked
 
+    private boolean validarCampos(String identificacion, String correo) {
+        boolean valido = false;
+       
+        if(identificacion.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el número de identificación.", "Error", 0);
+        } else if(correo.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese su correo eléctronico.", "Error", 0);
+        } else {
+            try {
+                Integer.parseInt(identificacion);
+                valido = true;
+            } catch(java.lang.NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Ingrese un número de identificación válido.", "Error", 0);
+            }
+        }
+        
+        return valido;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCancelar;
     private javax.swing.JLabel btnValidar;
@@ -197,7 +214,7 @@ public class ValitateExist extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelButton1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField txtFechaNacimiento;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIdentificacion;
     // End of variables declaration//GEN-END:variables
 }

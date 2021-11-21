@@ -16,8 +16,8 @@ public class FuncionarioModel extends UsuarioModel {
     private String fechaCreacion;
 
     // Constructor con toda la información
-    public FuncionarioModel(String cargo, String email, int verificado, String fechaCreacion,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String ultimoAcceso) {
-        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, contraseña, telefono, ultimoAcceso);
+    public FuncionarioModel(String cargo, String email, int verificado, String fechaCreacion,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String tipo, String ultimoAcceso) {
+        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, contraseña, telefono, tipo, ultimoAcceso);
         this.cargo = cargo;
         this.email = email;
         this.verificado = verificado;
@@ -25,8 +25,8 @@ public class FuncionarioModel extends UsuarioModel {
     }
     
     // Constructor para registro básico
-    public FuncionarioModel(String cargo, String email,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono) {
-        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono);
+    public FuncionarioModel(String cargo, String email,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String tipo) {
+        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, tipo);
         this.cargo = cargo;
         this.email = email;
     }

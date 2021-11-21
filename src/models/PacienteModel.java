@@ -18,8 +18,8 @@ public class PacienteModel extends UsuarioModel {
     private String fechaCreacion;
 
     // Constructor para obtener toda la información
-    public PacienteModel(String email, String direccion, int edad, int verificado, String fechaCreacion,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String ultimoAcceso) {
-        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, contraseña, telefono, ultimoAcceso);
+    public PacienteModel(String email, String direccion, int edad, int verificado, String fechaCreacion, int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String tipo, String ultimoAcceso) {
+        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, contraseña, telefono, tipo, ultimoAcceso);
         this.email = email;
         this.direccion = direccion;
         this.edad = edad;
@@ -28,8 +28,8 @@ public class PacienteModel extends UsuarioModel {
     }
     
     // Constructor para generar la información básica
-    public PacienteModel(String email, String direccion, int edad, int verificado, String fechaCreacion, int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono) {
-        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono);
+    public PacienteModel(String email, String direccion, int edad, int verificado, String fechaCreacion, int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono,String tipo) {
+        super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, tipo);
         this.email = email;
         this.direccion = direccion;
         this.edad = edad;
