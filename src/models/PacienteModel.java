@@ -28,7 +28,7 @@ public class PacienteModel extends UsuarioModel {
     }
     
     // Constructor para generar la información básica
-    public PacienteModel(String email, String direccion, int edad, int verificado, String fechaCreacion, int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono,String tipo) {
+    public PacienteModel(String email, String direccion, int edad, int verificado, String fechaCreacion, int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String tipo) {
         super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, tipo);
         this.email = email;
         this.direccion = direccion;

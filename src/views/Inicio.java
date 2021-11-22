@@ -1,5 +1,8 @@
 package views;
+
 import javax.swing.JOptionPane;
+import controllers.PacienteController;
+import javax.swing.table.DefaultTableModel;
 
 public class Inicio extends javax.swing.JFrame {
     private String[] modelos = {"PAC", "APL", "FUN", "LOT", "VAC"};
@@ -8,6 +11,7 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         customTable();
+        new PacienteController().fillTablePacientes(tblRegistros);
     }
 
     @SuppressWarnings("unchecked")
@@ -199,6 +203,7 @@ public class Inicio extends javax.swing.JFrame {
 
             }
         ));
+        tblRegistros.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblRegistros.setGridColor(new java.awt.Color(255, 255, 255));
         tblRegistros.setInheritsPopupMenu(true);
         tblRegistros.setIntercellSpacing(new java.awt.Dimension(2, 0));
@@ -368,6 +373,8 @@ public class Inicio extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar Paciente");
         lblTabla.setText("Pacientes");
         modeloActual = modelos[0];
+        
+        new PacienteController().fillTablePacientes(tblRegistros);
     }//GEN-LAST:event_btnPacientesMouseClicked
 
     private void btnVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVacunacionMouseClicked
@@ -413,7 +420,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
         if(modeloActual.equals(modelos[0])) {
-            new FormularioPaciente(this, false).setVisible(true);
+            new FormularioPaciente(this, false, tblRegistros).setVisible(true);
         } else if(modeloActual.equals(modelos[1])) {
             new FormularioVacunacion(this, false).setVisible(true);
         } else if(modeloActual.equals(modelos[2])) {
@@ -426,20 +433,48 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
-        // TODO add your handling code here:
+        int rowIndex = tblRegistros.getSelectedRow();
+        
+        if(rowIndex != -1) {
+            DefaultTableModel datos = (DefaultTableModel) tblRegistros.getModel();
+            
+            if(modeloActual.equals(modelos[0])) {
+                PacienteController controlador = new PacienteController();
+                controlador.fillTablePacientes(tblRegistros);
+                controlador.deleteOnePaciente(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+            } else if(modeloActual.equals(modelos[1])) {
+                
+            } else if(modeloActual.equals(modelos[2])) {
+                
+            } else if(modeloActual.equals(modelos[3])) {
+                
+            } else if(modeloActual.equals(modelos[4])) {
+                
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);
+        }
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
-        if(modeloActual.equals(modelos[0])) {
-            new FormularioPaciente(this, false, "").setVisible(true);
-        } else if(modeloActual.equals(modelos[1])) {
-            new FormularioVacunacion(this, false, "").setVisible(true);
-        } else if(modeloActual.equals(modelos[2])) {
-            new FormularioFuncionario(this, false, "").setVisible(true);
-        } else if(modeloActual.equals(modelos[3])) {
-            new FormularioLoteVacuna(this, false, "").setVisible(true);
-        } else if(modeloActual.equals(modelos[4])) {
-            new FormularioVacuna(this, false, "").setVisible(true);
+        int rowIndex = tblRegistros.getSelectedRow();
+        
+        if(rowIndex != -1) {
+            DefaultTableModel datos = (DefaultTableModel) tblRegistros.getModel();
+            
+            if(modeloActual.equals(modelos[0])) {
+                new FormularioPaciente(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
+            } else if(modeloActual.equals(modelos[1])) {
+                new FormularioVacunacion(this, false, "").setVisible(true);
+            } else if(modeloActual.equals(modelos[2])) {
+                new FormularioFuncionario(this, false, "").setVisible(true);
+            } else if(modeloActual.equals(modelos[3])) {
+                new FormularioLoteVacuna(this, false, "").setVisible(true);
+            } else if(modeloActual.equals(modelos[4])) {
+                new FormularioVacuna(this, false, "").setVisible(true);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);
         }
     }//GEN-LAST:event_btnEditarMouseClicked
 
