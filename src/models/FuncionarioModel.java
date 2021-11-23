@@ -25,10 +25,12 @@ public class FuncionarioModel extends UsuarioModel {
     }
     
     // Constructor para registro básico
-    public FuncionarioModel(String cargo, String email,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String tipo) {
+    public FuncionarioModel(String cargo, String email, int verificado, String fechaCreacion, int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String tipo) {
         super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, tipo);
         this.cargo = cargo;
         this.email = email;
+        this.verificado = verificado;
+        this.fechaCreacion = fechaCreacion;
     }
 
     public String getCargo() {

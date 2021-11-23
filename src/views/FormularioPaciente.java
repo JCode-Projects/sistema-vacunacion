@@ -220,7 +220,6 @@ public class FormularioPaciente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void llenarCampos() {
-        System.out.println(paciente.getIdentificacion());
         txtIdentificacion.setText(String.valueOf(paciente.getIdentificacion()));
         txtPrimerNombre.setText(paciente.getPrimerNombre());
         txtSegundoNombre.setText(paciente.getSegundoNombre());
