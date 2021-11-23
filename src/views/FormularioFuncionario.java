@@ -26,7 +26,7 @@ public class FormularioFuncionario extends javax.swing.JDialog {
         this.funcionario = new FuncionarioDAO().getOneFuncionario(Integer.parseInt(funcionario));
         identificacion = this.funcionario.getIdentificacion();
         initComponents();
-        llenarCampos(); 
+        llenarCampos();
         lblTitulo.setText("Actualizar Funcionario");
         btnAgregar.setText("ACTUALIZAR");
     }

@@ -3,6 +3,7 @@ package views;
 import javax.swing.JOptionPane;
 import controllers.PacienteController;
 import controllers.FuncionarioController;
+import controllers.VacunaController;
 import javax.swing.table.DefaultTableModel;
 
 public class Inicio extends javax.swing.JFrame {
@@ -410,6 +411,8 @@ public class Inicio extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar Vacuna");
         lblTabla.setText("Vacunas");
         modeloActual = modelos[4];
+        
+        new VacunaController().fillTableVacunas(tblRegistros);
     }//GEN-LAST:event_btnVacunasMouseClicked
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
@@ -431,7 +434,7 @@ public class Inicio extends javax.swing.JFrame {
         } else if(modeloActual.equals(modelos[3])) {
             new FormularioLoteVacuna(this, false).setVisible(true);
         } else if(modeloActual.equals(modelos[4])) {
-            new FormularioVacuna(this, false).setVisible(true);
+            new FormularioVacuna(this, false, tblRegistros).setVisible(true);
         }
     }//GEN-LAST:event_btnAgregarMouseClicked
 
@@ -454,7 +457,9 @@ public class Inicio extends javax.swing.JFrame {
             } else if(modeloActual.equals(modelos[3])) {
                 
             } else if(modeloActual.equals(modelos[4])) {
-                
+                VacunaController controlador = new VacunaController();
+                controlador.fillTableVacunas(tblRegistros);
+                controlador.deleteOneVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
             }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);
@@ -476,7 +481,7 @@ public class Inicio extends javax.swing.JFrame {
             } else if(modeloActual.equals(modelos[3])) {
                 new FormularioLoteVacuna(this, false, "").setVisible(true);
             } else if(modeloActual.equals(modelos[4])) {
-                new FormularioVacuna(this, false, "").setVisible(true);
+                new FormularioVacuna(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
             }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);

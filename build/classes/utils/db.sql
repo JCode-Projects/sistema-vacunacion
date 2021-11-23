@@ -58,16 +58,26 @@ CREATE TABLE vacuna (
     PRIMARY KEY (id_vacuna)
 );
 
+CREATE TABLE lote_vacuna (
+    id_lote INT(10) NOT NULL AUTO_INCREMENT,
+    numero_dosis INT(5) NOT NULL, 
+    numero_dosis_restante INT(5) NOT NULL,
+    id_vacuna INT(10) NOT NULL,
+
+    PRIMARY KEY (id_lote),
+    CONSTRAINT id_vacuna_fk FOREIGN KEY (id_vacuna) REFERENCES vacuna(id_vacuna)
+);
+
 CREATE TABLE reporte_vacuna (
     id_reporte INT(10) NOT NULL AUTO_INCREMENT,
     fecha_aplicacion DATE NOT NULL,
     fecha_refuerzo DATE,
     id_paciente INT(10) NOT NULL,
     id_funcionario INT(10) NOT NULL,
-    id_vacuna INT(10) NOT NULL,
+    id_lote INT(10) NOT NULL,
 
     PRIMARY KEY (id_reporte),
     CONSTRAINT id_paciente_fk FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente),
     CONSTRAINT id_funcionario_fk FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario),
-    CONSTRAINT id_vacuna_fk FOREIGN KEY (id_vacuna) REFERENCES vacuna(id_vacuna)
+    CONSTRAINT id_lote_fk FOREIGN KEY (id_lote) REFERENCES lote_vacuna(id_lote)
 );
