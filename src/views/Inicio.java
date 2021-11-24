@@ -3,6 +3,7 @@ package views;
 import javax.swing.JOptionPane;
 import controllers.PacienteController;
 import controllers.FuncionarioController;
+import controllers.LoteVacunaController;
 import controllers.VacunaController;
 import javax.swing.table.DefaultTableModel;
 
@@ -403,6 +404,8 @@ public class Inicio extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar Lote");
         lblTabla.setText("Lotes Vacunas");
         modeloActual = modelos[3];
+        
+        new LoteVacunaController().fillTableLoteVacunas(tblRegistros);
     }//GEN-LAST:event_btnLotesVacunacionMouseClicked
 
     private void btnVacunasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVacunasMouseClicked
@@ -432,7 +435,7 @@ public class Inicio extends javax.swing.JFrame {
         } else if(modeloActual.equals(modelos[2])) {
             new FormularioFuncionario(this, false, tblRegistros).setVisible(true);
         } else if(modeloActual.equals(modelos[3])) {
-            new FormularioLoteVacuna(this, false).setVisible(true);
+            new FormularioLoteVacuna(this, false, tblRegistros).setVisible(true);
         } else if(modeloActual.equals(modelos[4])) {
             new FormularioVacuna(this, false, tblRegistros).setVisible(true);
         }
@@ -455,7 +458,9 @@ public class Inicio extends javax.swing.JFrame {
                 controlador.fillTableFuncionarios(tblRegistros);
                 controlador.deleteOneFuncionario(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
             } else if(modeloActual.equals(modelos[3])) {
-                
+                LoteVacunaController controlador = new LoteVacunaController();
+                controlador.fillTableLoteVacunas(tblRegistros);
+                controlador.deleteOneLoteVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
             } else if(modeloActual.equals(modelos[4])) {
                 VacunaController controlador = new VacunaController();
                 controlador.fillTableVacunas(tblRegistros);
@@ -479,7 +484,7 @@ public class Inicio extends javax.swing.JFrame {
             } else if(modeloActual.equals(modelos[2])) {
                 new FormularioFuncionario(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
             } else if(modeloActual.equals(modelos[3])) {
-                new FormularioLoteVacuna(this, false, "").setVisible(true);
+                new FormularioLoteVacuna(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
             } else if(modeloActual.equals(modelos[4])) {
                 new FormularioVacuna(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
             }
