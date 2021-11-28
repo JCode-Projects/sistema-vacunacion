@@ -1,5 +1,6 @@
 package views;
 
+import access.PacienteDAO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import controllers.PacienteController;
@@ -7,6 +8,7 @@ import controllers.ReporteVacunaController;
 import controllers.FuncionarioController;
 import controllers.LoteVacunaController;
 import controllers.VacunaController;
+import models.PacienteModel;
 import models.UsuarioModel;
 
 public class Inicio extends javax.swing.JFrame {
@@ -50,6 +52,7 @@ public class Inicio extends javax.swing.JFrame {
         lblTabla = new javax.swing.JLabel();
         jPanelButton9 = new javax.swing.JPanel();
         btnReporte = new javax.swing.JLabel();
+        btnVerPaciente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
@@ -359,6 +362,18 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1.add(jPanelButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 200, 40));
 
+        btnVerPaciente.setBackground(new java.awt.Color(102, 102, 102));
+        btnVerPaciente.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btnVerPaciente.setForeground(new java.awt.Color(0, 204, 51));
+        btnVerPaciente.setText("Ver Información Paciente");
+        btnVerPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerPacienteMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnVerPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 58, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -375,6 +390,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseClicked
+        btnVerPaciente.setVisible(true);
         btnAgregar.setText("Agregar Paciente");
         btnEditar.setText("Editar Paciente");
         btnEliminar.setText("Eliminar Paciente");
@@ -385,6 +401,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPacientesMouseClicked
 
     private void btnVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVacunacionMouseClicked
+        btnVerPaciente.setVisible(false);
         btnAgregar.setText("Agregar Vacunación");
         btnEditar.setText("Editar Vacunación");
         btnEliminar.setText("Eliminar Vacunación");
@@ -396,6 +413,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFuncionariosMouseClicked
         if(usuario.getTipo().equals("ADM")) {
+            btnVerPaciente.setVisible(false);
             btnAgregar.setText("Agregar Funcionario");
             btnEditar.setText("Editar Funcionario");
             btnEliminar.setText("Eliminar Funcionario");
@@ -409,6 +427,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFuncionariosMouseClicked
 
     private void btnLotesVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLotesVacunacionMouseClicked
+        btnVerPaciente.setVisible(false);
         btnAgregar.setText("Agregar Lote");
         btnEditar.setText("Editar Lote");
         btnEliminar.setText("Eliminar Lote");
@@ -419,6 +438,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLotesVacunacionMouseClicked
 
     private void btnVacunasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVacunasMouseClicked
+        btnVerPaciente.setVisible(false);
         btnAgregar.setText("Agregar Vacuna");
         btnEditar.setText("Editar Vacuna");
         btnEliminar.setText("Eliminar Vacuna");
@@ -519,6 +539,19 @@ public class Inicio extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnReporteMouseClicked
 
+    private void btnVerPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerPacienteMouseClicked
+        int rowIndex = tblRegistros.getSelectedRow();
+        
+        if(rowIndex != -1) {
+            DefaultTableModel datos = (DefaultTableModel) tblRegistros.getModel();
+            PacienteModel paciente = new PacienteDAO().getOnePaciente(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+            
+            new DetallePaciente(paciente, true).setVisible(true);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona en la tabla un el paciente.", "Error Selección", 0);
+        }
+    }//GEN-LAST:event_btnVerPacienteMouseClicked
+
     public void customTable() {
         tblRegistros.getTableHeader().setFont(new java.awt.Font("Century Gothic", 1, 16));
         tblRegistros.getTableHeader().setBackground(new java.awt.Color(0,102,204));
@@ -536,6 +569,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel btnReporte;
     private javax.swing.JLabel btnVacunacion;
     private javax.swing.JLabel btnVacunas;
+    private javax.swing.JLabel btnVerPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelButton;

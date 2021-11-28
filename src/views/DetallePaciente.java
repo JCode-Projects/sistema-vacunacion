@@ -17,6 +17,14 @@ public class DetallePaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         llenarDatos();
     }
+    
+    public DetallePaciente(PacienteModel paciente, boolean dispose) {
+        initComponents();
+        this.paciente = paciente;
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        llenarDatos();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
