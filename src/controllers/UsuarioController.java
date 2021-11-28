@@ -38,7 +38,7 @@ public class UsuarioController {
                 if(ingreso) {
                     ocultarVista();
                     new UsuarioDAO().setFechaUltimoAcceso(usuario.getIdentificacion(), getFecha());
-                    new Inicio().setVisible(true);
+                    new Inicio(usuario).setVisible(true);
                 }
             } else if(rol.equals("FUN")) {
                 int valido = new FuncionarioDAO().validateFuncionario(usuario.getIdentificacion());
@@ -49,7 +49,7 @@ public class UsuarioController {
                     if(ingreso) {
                         ocultarVista();
                         new UsuarioDAO().setFechaUltimoAcceso(usuario.getIdentificacion(), getFecha());
-                        new Inicio().setVisible(true);
+                        new Inicio(usuario).setVisible(true);
                     }
                 }
             } else if(rol.equals("USU")) {

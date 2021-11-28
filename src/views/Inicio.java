@@ -1,21 +1,24 @@
 package views;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import controllers.PacienteController;
 import controllers.ReporteVacunaController;
 import controllers.FuncionarioController;
 import controllers.LoteVacunaController;
 import controllers.VacunaController;
-import javax.swing.table.DefaultTableModel;
+import models.UsuarioModel;
 
 public class Inicio extends javax.swing.JFrame {
     private String[] modelos = {"PAC", "APL", "FUN", "LOT", "VAC"};
     private String modeloActual = modelos[0];
+    private UsuarioModel usuario = null;
     
-    public Inicio() {
+    public Inicio(UsuarioModel usuario) {
         initComponents();
         customTable();
         new PacienteController().fillTablePacientes(tblRegistros);
+        this.usuario = usuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -392,13 +395,17 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVacunacionMouseClicked
 
     private void btnFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFuncionariosMouseClicked
-        btnAgregar.setText("Agregar Funcionario");
-        btnEditar.setText("Editar Funcionario");
-        btnEliminar.setText("Eliminar Funcionario");
-        lblTabla.setText("Funcionarios");
-        modeloActual = modelos[2];
-        
-        new FuncionarioController().fillTableFuncionarios(tblRegistros);
+        if(usuario.getTipo().equals("ADM")) {
+            btnAgregar.setText("Agregar Funcionario");
+            btnEditar.setText("Editar Funcionario");
+            btnEliminar.setText("Eliminar Funcionario");
+            lblTabla.setText("Funcionarios");
+            modeloActual = modelos[2];
+
+            new FuncionarioController().fillTableFuncionarios(tblRegistros);
+        } else {
+            JOptionPane.showMessageDialog(this, "No tienes los permisos necesarios para acceder a esta sección.", "Acceso Denegado", 0);
+        }
     }//GEN-LAST:event_btnFuncionariosMouseClicked
 
     private void btnLotesVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLotesVacunacionMouseClicked
@@ -445,61 +452,69 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
-        int rowIndex = tblRegistros.getSelectedRow();
+        if(usuario.getTipo().equals("ADM")) {
+            int rowIndex = tblRegistros.getSelectedRow();
         
-        if(rowIndex != -1) {
-            DefaultTableModel datos = (DefaultTableModel) tblRegistros.getModel();
-            
-            if(modeloActual.equals(modelos[0])) {
-                PacienteController controlador = new PacienteController();
-                controlador.fillTablePacientes(tblRegistros);
-                controlador.deleteOnePaciente(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
-            } else if(modeloActual.equals(modelos[1])) {
-                ReporteVacunaController controlador = new ReporteVacunaController();
-                controlador.fillTableReportes(tblRegistros);
-                controlador.deleteOneVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
-            } else if(modeloActual.equals(modelos[2])) {
-                FuncionarioController controlador = new FuncionarioController();
-                controlador.fillTableFuncionarios(tblRegistros);
-                controlador.deleteOneFuncionario(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
-            } else if(modeloActual.equals(modelos[3])) {
-                LoteVacunaController controlador = new LoteVacunaController();
-                controlador.fillTableLoteVacunas(tblRegistros);
-                controlador.deleteOneLoteVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
-            } else if(modeloActual.equals(modelos[4])) {
-                VacunaController controlador = new VacunaController();
-                controlador.fillTableVacunas(tblRegistros);
-                controlador.deleteOneVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+            if(rowIndex != -1) {
+                DefaultTableModel datos = (DefaultTableModel) tblRegistros.getModel();
+
+                if(modeloActual.equals(modelos[0])) {
+                    PacienteController controlador = new PacienteController();
+                    controlador.fillTablePacientes(tblRegistros);
+                    controlador.deleteOnePaciente(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+                } else if(modeloActual.equals(modelos[1])) {
+                    ReporteVacunaController controlador = new ReporteVacunaController();
+                    controlador.fillTableReportes(tblRegistros);
+                    controlador.deleteOneVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+                } else if(modeloActual.equals(modelos[2])) {
+                    FuncionarioController controlador = new FuncionarioController();
+                    controlador.fillTableFuncionarios(tblRegistros);
+                    controlador.deleteOneFuncionario(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+                } else if(modeloActual.equals(modelos[3])) {
+                    LoteVacunaController controlador = new LoteVacunaController();
+                    controlador.fillTableLoteVacunas(tblRegistros);
+                    controlador.deleteOneLoteVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+                } else if(modeloActual.equals(modelos[4])) {
+                    VacunaController controlador = new VacunaController();
+                    controlador.fillTableVacunas(tblRegistros);
+                    controlador.deleteOneVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
+                }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);
+            JOptionPane.showMessageDialog(this, "No tienes los permisos necesarios para realizar esta acción.", "Acceso Denegado", 0);
         }
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
-        int rowIndex = tblRegistros.getSelectedRow();
+        if(usuario.getTipo().equals("ADM")) {
+            int rowIndex = tblRegistros.getSelectedRow();
         
-        if(rowIndex != -1) {
-            DefaultTableModel datos = (DefaultTableModel) tblRegistros.getModel();
-            
-            if(modeloActual.equals(modelos[0])) {
-                new FormularioPaciente(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
-            } else if(modeloActual.equals(modelos[1])) {
-                new FormularioVacunacion(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
-            } else if(modeloActual.equals(modelos[2])) {
-                new FormularioFuncionario(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
-            } else if(modeloActual.equals(modelos[3])) {
-                new FormularioLoteVacuna(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
-            } else if(modeloActual.equals(modelos[4])) {
-                new FormularioVacuna(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
+            if(rowIndex != -1) {
+                DefaultTableModel datos = (DefaultTableModel) tblRegistros.getModel();
+
+                if(modeloActual.equals(modelos[0])) {
+                    new FormularioPaciente(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
+                } else if(modeloActual.equals(modelos[1])) {
+                    new FormularioVacunacion(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
+                } else if(modeloActual.equals(modelos[2])) {
+                    new FormularioFuncionario(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
+                } else if(modeloActual.equals(modelos[3])) {
+                    new FormularioLoteVacuna(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
+                } else if(modeloActual.equals(modelos[4])) {
+                    new FormularioVacuna(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
+                }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione en la tabla el registro que deseas actualizar.", "Error Selección", 0);
+            JOptionPane.showMessageDialog(this, "No tienes los permisos necesarios para realizar esta acción.", "Acceso Denegado", 0);
         }
     }//GEN-LAST:event_btnEditarMouseClicked
 
     private void btnReporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteMouseClicked
-        new ReporteVacunacion().setVisible(true);
+        new ReporteVacunacion(usuario).setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_btnReporteMouseClicked
