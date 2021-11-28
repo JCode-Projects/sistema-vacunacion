@@ -39,6 +39,50 @@ public class PacienteDAO {
         return verificado;
     }
     
+    public int getIdPacienteWhitIdentificacion(int identificacion) {
+        int id = 0;
+        
+        try {
+            if(conn == null)
+                conn = DBConnection.getDBConnection();
+            
+            String query = "SELECT id_paciente FROM paciente WHERE id_usuario = " + identificacion + ";";
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            
+            while(result.next()) {
+                id = result.getInt(1);
+            }
+        } catch (SQLException ex) {
+            showMessageDialog(null, "Se ha producido un error al obtener el id.", "Error Consulta", 0);
+        }
+        
+        return id;
+    }
+    
+    public int getIdentificacionWhitIdPaciente(int id) {
+        int identificacion = 0;
+        
+        try {
+            if(conn == null)
+                conn = DBConnection.getDBConnection();
+            
+            String query = "SELECT id_usuario FROM paciente WHERE id_paciente = " + identificacion + ";";
+            
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            
+            while(result.next()) {
+                identificacion = result.getInt(1);
+            }
+        } catch (SQLException ex) {
+            showMessageDialog(null, "Se ha producido un error al obtener la identificación.", "Error Consulta", 0);
+        }
+        
+        return identificacion;
+    }
+    
     public PacienteModel getOnePaciente(int identificacion) {
         PacienteModel paciente = null;
         

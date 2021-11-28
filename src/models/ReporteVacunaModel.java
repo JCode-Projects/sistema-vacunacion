@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models;
 
 /**
@@ -14,17 +9,25 @@ public class ReporteVacunaModel {
     private String fechaAplicacion;
     private String fechaRefuerzo;
     private int idPaciente;
+    private int identificacionPaciente;
     private int idFuncionario;
+    private int identificacionFuncionario;
+    private int idLoteVacuna;
     private int idVacuna;
+    private String farmaceuticaVacuna;
 
     // Constructor para obtener toda la información
-    public ReporteVacunaModel(int idReporte, String fechaAplicacion, String fechaRefuerzo, int idPaciente, int idFuncionario, int idVacuna) {
+    public ReporteVacunaModel(int idReporte, String fechaAplicacion, String fechaRefuerzo, int idPaciente, int identificacionPaciente, int idFuncionario, int identificacionFuncionario, int idLoteVacuna, int idVacuna, String farmaceuticaVacuna) {
         this.idReporte = idReporte;
         this.fechaAplicacion = fechaAplicacion;
         this.fechaRefuerzo = fechaRefuerzo;
         this.idPaciente = idPaciente;
+        this.identificacionPaciente = identificacionPaciente;
         this.idFuncionario = idFuncionario;
+        this.identificacionFuncionario = identificacionFuncionario;
+        this.idLoteVacuna = idLoteVacuna;
         this.idVacuna = idVacuna;
+        this.farmaceuticaVacuna = farmaceuticaVacuna;
     }
 
     // Constructor para obtener la información básica
@@ -33,7 +36,11 @@ public class ReporteVacunaModel {
         this.fechaRefuerzo = fechaRefuerzo;
         this.idPaciente = idPaciente;
         this.idFuncionario = idFuncionario;
-        this.idVacuna = idVacuna;
+        this.idLoteVacuna = idVacuna;
+    }
+    
+    public int getIdVacuna() {
+        return idVacuna;
     }
 
     public int getIdReporte() {
@@ -56,7 +63,19 @@ public class ReporteVacunaModel {
         return idFuncionario;
     }
 
-    public int getIdVacuna() {
-        return idVacuna;
+    public int getIdLoteVacuna() {
+        return idLoteVacuna;
+    }
+    
+     public int getIdentificacionPaciente() {
+        return identificacionPaciente;
+    }
+
+    public int getIdentificacionFuncionario() {
+        return identificacionFuncionario;
+    }
+
+    public String getFarmaceuticaVacuna() {
+        return farmaceuticaVacuna;
     }
 }

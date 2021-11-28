@@ -10,14 +10,16 @@ package models;
  * @author JCode
  */
 public class FuncionarioModel extends UsuarioModel {
+    private int idFuncionario;
     private String cargo;
     private String email;
     private int verificado = 0;
     private String fechaCreacion;
 
     // Constructor con toda la información
-    public FuncionarioModel(String cargo, String email, int verificado, String fechaCreacion,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String tipo, String ultimoAcceso) {
+    public FuncionarioModel(int idFuncionario, String cargo, String email, int verificado, String fechaCreacion,int identificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String contraseña, String telefono, String tipo, String ultimoAcceso) {
         super(identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, contraseña, telefono, tipo, ultimoAcceso);
+        this.idFuncionario = idFuncionario;
         this.cargo = cargo;
         this.email = email;
         this.verificado = verificado;
@@ -56,4 +58,9 @@ public class FuncionarioModel extends UsuarioModel {
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+    
 }

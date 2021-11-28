@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.JOptionPane.showMessageDialog;
 import models.LoteVacunaModel;
 import utils.DBConnection;
@@ -148,5 +150,40 @@ public class LoteVacunaDAO {
         }
 
         return eliminado;
+    }
+    
+    public boolean vacunaAplicada(int loteId) {
+        boolean vacunaAplicada = false;
+        
+        int vacunasRestantes = getOneLoteVacuna(loteId).getNumeroDosisRestantes();
+        
+        if(vacunasRestantes == 0) {
+            showMessageDialog(null, "Ese lote no tiene dosis disponibles, selecciona otro si es posible.", "Error Actualización", 0);
+        } else {
+            int actualizacionVacunasRestantes = vacunasRestantes - 1;
+            
+            if(conn == null) 
+                conn = DBConnection.getDBConnection();
+            
+            String query = "UPDATE lote_vacuna SET numero_dosis_restante = ? WHERE id_lote = ?;";
+        
+            try {
+                PreparedStatement statement;
+                statement = conn.prepareStatement(query);
+                statement.setInt(1, actualizacionVacunasRestantes);
+                statement.setInt(2, loteId);
+                
+                int affectedRows = statement.executeUpdate();
+
+                if (affectedRows > 0) {
+                    vacunaAplicada = true;
+                }
+            } catch (SQLException ex) {
+                showMessageDialog(null, "Algo ha salido mal al registrar la aplicación.", "Error Actualización", 0);
+            }
+            
+        }
+        
+        return vacunaAplicada;
     }
 }

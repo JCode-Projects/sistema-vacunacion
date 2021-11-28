@@ -2,6 +2,7 @@ package views;
 
 import javax.swing.JOptionPane;
 import controllers.PacienteController;
+import controllers.ReporteVacunaController;
 import controllers.FuncionarioController;
 import controllers.LoteVacunaController;
 import controllers.VacunaController;
@@ -386,6 +387,8 @@ public class Inicio extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar Vacunación");
         lblTabla.setText("Vacunaciones");
         modeloActual = modelos[1];
+        
+        new ReporteVacunaController().fillTableReportes(tblRegistros);
     }//GEN-LAST:event_btnVacunacionMouseClicked
 
     private void btnFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFuncionariosMouseClicked
@@ -431,7 +434,7 @@ public class Inicio extends javax.swing.JFrame {
         if(modeloActual.equals(modelos[0])) {
             new FormularioPaciente(this, false, tblRegistros).setVisible(true);
         } else if(modeloActual.equals(modelos[1])) {
-            new FormularioVacunacion(this, false).setVisible(true);
+            new FormularioVacunacion(this, false, tblRegistros).setVisible(true);
         } else if(modeloActual.equals(modelos[2])) {
             new FormularioFuncionario(this, false, tblRegistros).setVisible(true);
         } else if(modeloActual.equals(modelos[3])) {
@@ -452,7 +455,9 @@ public class Inicio extends javax.swing.JFrame {
                 controlador.fillTablePacientes(tblRegistros);
                 controlador.deleteOnePaciente(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
             } else if(modeloActual.equals(modelos[1])) {
-                
+                ReporteVacunaController controlador = new ReporteVacunaController();
+                controlador.fillTableReportes(tblRegistros);
+                controlador.deleteOneVacuna(Integer.parseInt((String) datos.getValueAt(rowIndex, 0)));
             } else if(modeloActual.equals(modelos[2])) {
                 FuncionarioController controlador = new FuncionarioController();
                 controlador.fillTableFuncionarios(tblRegistros);
@@ -480,7 +485,7 @@ public class Inicio extends javax.swing.JFrame {
             if(modeloActual.equals(modelos[0])) {
                 new FormularioPaciente(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
             } else if(modeloActual.equals(modelos[1])) {
-                new FormularioVacunacion(this, false, "").setVisible(true);
+                new FormularioVacunacion(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
             } else if(modeloActual.equals(modelos[2])) {
                 new FormularioFuncionario(this, false, (String) datos.getValueAt(rowIndex, 0), tblRegistros).setVisible(true);
             } else if(modeloActual.equals(modelos[3])) {
