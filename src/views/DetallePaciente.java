@@ -263,15 +263,25 @@ public class DetallePaciente extends javax.swing.JFrame {
         lblPrimerApellido.setText(paciente.getPrimerApellido());
         lblSegundoApellido.setText(paciente.getSegundoApellido());
         lblEdad.setText(String.valueOf(paciente.getEdad()) + " Años");
-        lblFarmaceuticaVacuna.setText(reporte.getFarmaceuticaVacuna());
-        lblFechaAplicacion.setText(reporte.getFechaAplicacion());
-        lblFechaRefuerzo.setText(reporte.getFechaRefuerzo() == null ? "No registrado" : reporte.getFechaRefuerzo());
-        lblRefuerzo.setText(vacuna.getRefuerzo()== 0 ? "No requiere" : "Si requiere");
+        
+        if(reporte != null) {
+            lblFarmaceuticaVacuna.setText(reporte.getFarmaceuticaVacuna());
+            lblFechaAplicacion.setText(reporte.getFechaAplicacion());
+            lblFechaRefuerzo.setText(reporte.getFechaRefuerzo() == null ? "No registrado" : reporte.getFechaRefuerzo());
+            lblRefuerzo.setText(vacuna.getRefuerzo()== 0 ? "No requiere" : "Si requiere");
+        } else {
+            lblFarmaceuticaVacuna.setText("No registra");
+            lblFechaAplicacion.setText("No registra");
+            lblFechaRefuerzo.setText("No registra");
+            lblRefuerzo.setText("No registra");
+        }
     }
     
     private void obtenerInformacionAdicional() {
         reporte = new ReporteVacunaController().getOneReporteByIdUsuario(paciente.getIdentificacion());
-        vacuna = new VacunaDAO().getOneVacuna(reporte.getIdVacuna());
+        if(reporte != null) {
+            vacuna = new VacunaDAO().getOneVacuna(reporte.getIdVacuna());
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
