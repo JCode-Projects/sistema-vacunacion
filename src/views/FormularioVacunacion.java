@@ -6,6 +6,8 @@ import controllers.ReporteVacunaController;
 import models.ReporteVacunaModel;
 import access.ReporteVacunaDAO;
 import access.PacienteDAO;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import models.FuncionarioModel;
@@ -226,6 +228,8 @@ public class FormularioVacunacion extends javax.swing.JDialog {
         for(LoteVacunaModel lote : lotes) {
             cbxLoteVacuna.addItem(String.valueOf(lote.getIdLote() + " " + lote.getFarmaceuticaVacuna()));
         }
+        
+        txtFechaAplicacion.setText(getFecha());
     }
     
     private void llenarCampos() {
@@ -261,6 +265,11 @@ public class FormularioVacunacion extends javax.swing.JDialog {
         }
 
         return valido;
+    }
+    
+    public String getFecha() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return dtf.format(LocalDateTime.now()).toString();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
