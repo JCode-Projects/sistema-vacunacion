@@ -72,6 +72,10 @@ public class ReporteVacunaController {
         modeloColumnas.getColumn(9).setPreferredWidth(130);
     }
     
+    public ReporteVacunaModel getOneReporteByIdUsuario(int id) {
+        return new ReporteVacunaDAO().getOneReporteVacunaByIdUsuario(id);
+    }
+    
     public boolean insertOneReporteVacuna(String[] data) {
         boolean insertado = false;
         

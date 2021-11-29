@@ -1,6 +1,10 @@
 package views;
 
+import access.VacunaDAO;
 import models.PacienteModel;
+import controllers.ReporteVacunaController;
+import models.ReporteVacunaModel;
+import models.VacunaModel;
 
 /**
  *
@@ -9,12 +13,15 @@ import models.PacienteModel;
 public class DetallePaciente extends javax.swing.JFrame {
 
     private PacienteModel paciente = null;
+    ReporteVacunaModel reporte = null;
+    VacunaModel vacuna = null;
     
     public DetallePaciente(PacienteModel paciente) {
         initComponents();
         this.paciente = paciente;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        obtenerInformacionAdicional();
         llenarDatos();
     }
     
@@ -23,6 +30,7 @@ public class DetallePaciente extends javax.swing.JFrame {
         this.paciente = paciente;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        obtenerInformacionAdicional();
         llenarDatos();
     }
 
@@ -255,6 +263,15 @@ public class DetallePaciente extends javax.swing.JFrame {
         lblPrimerApellido.setText(paciente.getPrimerApellido());
         lblSegundoApellido.setText(paciente.getSegundoApellido());
         lblEdad.setText(String.valueOf(paciente.getEdad()) + " Años");
+        lblFarmaceuticaVacuna.setText(reporte.getFarmaceuticaVacuna());
+        lblFechaAplicacion.setText(reporte.getFechaAplicacion());
+        lblFechaRefuerzo.setText(reporte.getFechaRefuerzo() == null ? "No registrado" : reporte.getFechaRefuerzo());
+        lblRefuerzo.setText(vacuna.getRefuerzo()== 0 ? "No requiere" : "Si requiere");
+    }
+    
+    private void obtenerInformacionAdicional() {
+        reporte = new ReporteVacunaController().getOneReporteByIdUsuario(paciente.getIdentificacion());
+        vacuna = new VacunaDAO().getOneVacuna(reporte.getIdVacuna());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

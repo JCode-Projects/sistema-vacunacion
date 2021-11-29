@@ -48,6 +48,37 @@ public class ReporteVacunaDAO {
 
         return reporteVacuna;
     }
+    
+    public ReporteVacunaModel getOneReporteVacunaByIdUsuario(int id) {
+        ReporteVacunaModel reporteVacuna = null;
+
+        try {
+            if (conn == null) {
+                conn = DBConnection.getDBConnection();
+            }
+
+            String query = " SELECT rv.id_reporte, rv.fecha_aplicacion, rv.fecha_refuerzo, "
+                    + "rv.id_paciente, pc.id_usuario, rv.id_funcionario, fn.id_usuario, "
+                    + "rv.id_lote, lv.id_vacuna, vc.farmaceutica "
+                    + "FROM reporte_vacuna AS rv "
+                    + "INNER JOIN paciente AS pc ON rv.id_paciente = pc.id_paciente "
+                    + "INNER JOIN funcionario AS fn ON rv.id_funcionario = fn.id_funcionario "
+                    + "INNER JOIN lote_vacuna AS lv ON rv.id_lote = lv.id_lote "
+                    + "INNER JOIN vacuna AS vc ON lv.id_vacuna = vc.id_vacuna "
+                    + "WHERE pc.id_usuario = " + id + ";";
+
+            Statement statement = conn.createStatement();
+            ResultSet result = statement.executeQuery(query);
+
+            while (result.next()) {
+                reporteVacuna = new ReporteVacunaModel(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4), result.getInt(5), result.getInt(6), result.getInt(7), result.getInt(8), result.getInt(9), result.getString(10));
+            }
+        } catch (SQLException ex) {
+            showMessageDialog(null, "Se ha producido un error al obtener el reporte.", "Error Consulta", 0);
+        }
+
+        return reporteVacuna;
+    }
 
     public ArrayList<ReporteVacunaModel> getAllReportesVacunas() {
         ArrayList<ReporteVacunaModel> reporteVacunas = new ArrayList<ReporteVacunaModel>();
