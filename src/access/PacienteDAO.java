@@ -275,7 +275,7 @@ public class PacienteDAO {
                 eliminado = true;
             }
         } catch (SQLException ex) {
-            showMessageDialog(null, "No se pudo actualizar el paciente, recuerda que \nel número de identificación no se debe modificar.", "Error Actualización", 0);
+            showMessageDialog(null, "No se pudo eliminar el paciente, verifica que no \nexista un registro de vacunación para el.", "Error Actualización", 0);
         }
         
         return eliminado;

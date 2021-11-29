@@ -23,7 +23,7 @@ public class DBConnection {
         Connection conn = null;
         
         try {
-            String dataConnectionPath = System.getProperty("user.dir") + "/src/utils/data.json";
+            String dataConnectionPath = System.getProperty("user.dir") + "/src/utils/credenciales.json";
             JSONObject objJSON = (JSONObject) json.parse(new FileReader(dataConnectionPath));
 
             // Obtiene las credenciales del archivo JSON

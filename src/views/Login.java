@@ -138,7 +138,6 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         txtIdentificacion.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txtIdentificacion.setText("123456789");
         txtIdentificacion.setActionCommand("<Not Set>");
         txtIdentificacion.setBorder(null);
         jPanel2.add(txtIdentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 349, 33));
@@ -219,7 +218,6 @@ public class Login extends javax.swing.JFrame {
         jLabel16.setText("persona encargada de administrar el");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        txtContraseña.setText("admin");
         txtContraseña.setBorder(null);
         jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 312, 350, 30));
 

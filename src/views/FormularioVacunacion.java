@@ -226,7 +226,7 @@ public class FormularioVacunacion extends javax.swing.JDialog {
         
         cbxLoteVacuna.addItem("Seleccione una opción");
         for(LoteVacunaModel lote : lotes) {
-            cbxLoteVacuna.addItem(String.valueOf(lote.getIdLote() + " " + lote.getFarmaceuticaVacuna()));
+            cbxLoteVacuna.addItem(String.valueOf(lote.getIdLote()) + " " + lote.getFarmaceuticaVacuna());
         }
         
         txtFechaAplicacion.setText(getFecha());
