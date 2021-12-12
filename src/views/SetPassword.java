@@ -191,25 +191,45 @@ public class SetPassword extends javax.swing.JDialog {
     }
     
     private void btnValidarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValidarMouseClicked
-        if(validarPassword(new String(txtPassword.getPassword()), new String(txtConfirmarPassword.getPassword()))) {
-            if(funcionario != null) {
-                if(new ConfirmacionController(this).setContraseñaDB(new String(txtPassword.getPassword()), funcionario.getIdentificacion(), funcionario.getTipo())) {
-                    showMessageDialog(null, "Ya puedes iniciar sesión en nuestra aplicación.", "Error Coincidencia", 2);
-                    setVisible(false);
-                    dispose();
+        boolean iguales = validarPassword(new String(txtPassword.getPassword()), new String(txtConfirmarPassword.getPassword()));
+        boolean validarCtr = validarCaracteres(new String(txtPassword.getPassword()));
+        if(validarCtr) {
+            if(iguales) {
+                if(funcionario != null) {
+                    if(new ConfirmacionController(this).setContraseñaDB(new String(txtPassword.getPassword()), funcionario.getIdentificacion(), funcionario.getTipo())) {
+                        showMessageDialog(null, "Ya puedes iniciar sesión en nuestra aplicación.", "Error Coincidencia", 2);
+                        setVisible(false);
+                        dispose();
+                    }
+                } else if(paciente != null) {
+                    if(new ConfirmacionController(this).setContraseñaDB(new String(txtPassword.getPassword()), paciente.getIdentificacion(), paciente.getTipo())) {
+                        showMessageDialog(null, "Ya puedes iniciar sesión en nuestra aplicación.", "Error Coincidencia", 2);
+                        setVisible(false);
+                        dispose();
+                    }
                 }
-            } else if(paciente != null) {
-                if(new ConfirmacionController(this).setContraseñaDB(new String(txtPassword.getPassword()), paciente.getIdentificacion(), paciente.getTipo())) {
-                    showMessageDialog(null, "Ya puedes iniciar sesión en nuestra aplicación.", "Error Coincidencia", 2);
-                    setVisible(false);
-                    dispose();
-                }
+            } else {
+                showMessageDialog(null, "Las contraseñas ingresadas no son iguales, \nverifica e intenta nuevamente.", "Error Coincidencia", 0);
             }
-        } else {
-            showMessageDialog(null, "Las contraseñas ingresadas no son iguales, \nverifica e intenta nuevamente.", "Error Coincidencia", 0);
         }
     }//GEN-LAST:event_btnValidarMouseClicked
 
+    private boolean validarCaracteres(String contraseña) {
+        boolean valido = false;
+        
+        try {
+            if(!contraseña.contains("$") && !contraseña.contains("%") && !contraseña.contains("&") && !contraseña.contains("/") && !contraseña.contains("*") && !contraseña.contains("-") && !contraseña.contains("ñ")) {
+                valido = true;
+            } else {
+                throw new Exception("Los caracteres enviados no son válidos.");
+            }
+        } catch(Exception error) {
+            showMessageDialog(null, "No se admiten caracteres especiales '$,%,&,/,*,-,ñ'.", "Error Tipado", 0);
+        }
+        
+        return valido;
+    }
+    
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         this.setVisible(false);
         this.dispose();
